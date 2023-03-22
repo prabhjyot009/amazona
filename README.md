@@ -7,7 +7,7 @@ Welcome to my React and Node tutorial to build a fully-functional e-commerce web
 
 ## Demo Website
 
-- 👉 Render : [https://amazona.onrender.com](https://amazona.onrender.com)
+- 👉 Live Demo Vercel :
 
 ## You Will Learn
 
