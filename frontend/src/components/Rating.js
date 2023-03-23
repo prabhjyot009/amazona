@@ -1,6 +1,6 @@
-function Rating(props) {
-  const { rating, numReviews, caption } = props;
-  return (
+function Rating(props) {//Rating is a function that takes in props as an argument
+  const { rating, numReviews, caption } = props;//rating is a variable that is equal to the rating property of the props object, numReviews is a variable that is equal to the numReviews property of the props object, and caption is a variable that is equal to the caption property of the props object
+  return (//returning the following jsx code to the caller of this function which is equal to the Rating object's __proto__ property which is equal to the function's prototype property which is equal to an object that has a constructor property which is equal to the Rating function
     <div className="rating">
       <span>
         <i
