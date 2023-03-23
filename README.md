@@ -2,14 +2,7 @@
 
 ![amazona](/frontend/public/images/amazona.png)
 
-
-Welcome to my React and Node tutorial to build a fully-functional e-commerce website exactly like amazon. Open your code editor and follow me for the next hours to build an e-commerce website using MERN stack (MongoDB, ExpressJS, React and Node.JS).
-
-## Demo Website
-
-- 👉 Live Demo Vercel :
-
-## You Will Learn
+## Tech Used
 
 - HTML5 and CSS3: Semantic Elements, CSS Grid, Flexbox
 - React: Components, Props, Events, Hooks, Router, Axios
@@ -18,8 +11,6 @@ Welcome to my React and Node tutorial to build a fully-functional e-commerce web
 - MongoDB: Mongoose, Aggregation
 - Development: ESLint, Babel, Git, Github,
 - Deployment: Heroku
-
-## Run Locally
 
 ### 1. Clone repo
 
