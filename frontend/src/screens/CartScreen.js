@@ -1,34 +1,34 @@
-import { useContext } from 'react';
-import { Store } from '../Store';
-import { Helmet } from 'react-helmet-async';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import MessageBox from '../components/MessageBox';
-import ListGroup from 'react-bootstrap/ListGroup';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
-import { Link, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import { useContext } from 'react';//it is used to import the react library
+import { Store } from '../Store';//it is used to import the Store.js file from the same folder
+import { Helmet } from 'react-helmet-async';//it is used to import the Helmet component from the react-helmet-async library
+import Row from 'react-bootstrap/Row';//it is used to import the Row component from the react-bootstrap library
+import Col from 'react-bootstrap/Col';//it is used to import the Col component from the react-bootstrap library
+import MessageBox from '../components/MessageBox';//it is used to import the MessageBox component from the same folder
+import ListGroup from 'react-bootstrap/ListGroup';//it is used to import the ListGroup component from the react-bootstrap library
+import Button from 'react-bootstrap/Button';//it is used to import the Button component from the react-bootstrap library
+import Card from 'react-bootstrap/Card';//it is used to import the Card component from the react-bootstrap library
+import { Link, useNavigate } from 'react-router-dom';//it is used to import the Link and useNavigate components from the react-router-dom library
+import axios from 'axios';//it is used to import the axios library
 
-export default function CartScreen() {
-  const navigate = useNavigate();
+export default function CartScreen() {//CartScreen is a component
+  const navigate = useNavigate();//useNavigate is a hook
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
     cart: { cartItems },
   } = state;
 
-  const updateCartHandler = async (item, quantity) => {
+  const updateCartHandler = async (item, quantity) => {//updateCartHandler is a function
     const { data } = await axios.get(`/api/products/${item._id}`);
     if (data.countInStock < quantity) {
       window.alert('Sorry. Product is out of stock');
       return;
     }
-    ctxDispatch({
+    ctxDispatch({//ctxDispatch is a function
       type: 'CART_ADD_ITEM',
       payload: { ...item, quantity },
     });
   };
-  const removeItemHandler = (item) => {
+  const removeItemHandler = (item) => {//removeItemHandler is a function
     ctxDispatch({ type: 'CART_REMOVE_ITEM', payload: item });
   };
 
@@ -36,7 +36,7 @@ export default function CartScreen() {
     navigate('/signin?redirect=/shipping');
   };
 
-  return (
+  return (//return is a function that returns the JSX code
     <div>
       <Helmet>
         <title>Shopping Cart</title>

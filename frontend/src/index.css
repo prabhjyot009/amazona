@@ -1,4 +1,5 @@
-body {
+/*in this file we will add all the css code for our project*/
+body {/*this is the body tag*/
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -23,7 +24,7 @@ main {
   justify-content: center;
 }
 
-.rating span {
+.rating span {/*this is the span tag*/
   color: #ffc000;
 }
 

@@ -1,16 +1,16 @@
-import { useEffect, useReducer } from 'react';
-import axios from 'axios';
-import logger from 'use-reducer-logger';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Product from '../components/Product';
+import { useEffect, useReducer } from 'react';// useEffect, useReducer are hooks
+import axios from 'axios';// axios is a library
+import logger from 'use-reducer-logger';// logger is a function
+import Row from 'react-bootstrap/Row';// Row is a component
+import Col from 'react-bootstrap/Col';// Col is a component
+import Product from '../components/Product';// Product is a component
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 // import data from '../data';
 
-const reducer = (state, action) => {
-  switch (action.type) {
+const reducer = (state, action) => {// reducer is a function
+  switch (action.type) {// switch is a function that takes an argument and returns a value based on the argument passed to it and the cases defined in the switch function body
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
@@ -23,7 +23,7 @@ const reducer = (state, action) => {
 };
 
 function HomeScreen() {
-  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {
+  const [{ loading, error, products }, dispatch] = useReducer(logger(reducer), {// useReducer is a hook
     products: [],
     loading: true,
     error: '',

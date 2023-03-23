@@ -1,3 +1,4 @@
+// This file is used to store the state of the application and is imported into the App.js file in the frontend folder. The StoreProvider component is used to provide the Redux store to the app. The StoreProvider component is wrapped in the HelmetProvider component. The HelmetProvider component is wrapped in the PayPalScriptProvider component. The PayPalScriptProvider component is wrapped in the StoreProvider component. The StoreProvider component is wrapped in the React.StrictMode component. The React.StrictMode component is wrapped in the ReactDOM.render function. The ReactDOM.render function is used to render the App component to the DOM. The App component is rendered to the element with the id of root. The reportWebVitals function is called at the end of the file. 
 import { createContext, useReducer } from 'react';
 
 export const Store = createContext();

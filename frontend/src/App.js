@@ -1,58 +1,58 @@
-import { BrowserRouter, Link, Route, Routes } from 'react-router-dom';
-import { toast, ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import HomeScreen from './screens/HomeScreen';
-import ProductScreen from './screens/ProductScreen';
-import Navbar from 'react-bootstrap/Navbar';
-import Badge from 'react-bootstrap/Badge';
-import Nav from 'react-bootstrap/Nav';
-import NavDropdown from 'react-bootstrap/NavDropdown';
-import Container from 'react-bootstrap/Container';
-import { LinkContainer } from 'react-router-bootstrap';
-import { useContext, useEffect, useState } from 'react';
-import { Store } from './Store';
-import CartScreen from './screens/CartScreen';
-import SigninScreen from './screens/SigninScreen';
-import ShippingAddressScreen from './screens/ShippingAddressScreen';
-import SignupScreen from './screens/SignupScreen';
-import PaymentMethodScreen from './screens/PaymentMethodScreen';
-import PlaceOrderScreen from './screens/PlaceOrderScreen';
-import OrderScreen from './screens/OrderScreen';
-import OrderHistoryScreen from './screens/OrderHistoryScreen';
-import ProfileScreen from './screens/ProfileScreen';
-import Button from 'react-bootstrap/Button';
-import { getError } from './utils';
-import axios from 'axios';
-import SearchBox from './components/SearchBox';
-import SearchScreen from './screens/SearchScreen';
+import { BrowserRouter, Link, Route, Routes } from 'react-router-dom'; // BrowserRouter is a component that wraps the entire app
+import { toast, ToastContainer } from 'react-toastify';// ToastContainer is a component that wraps the entire app
+import 'react-toastify/dist/ReactToastify.css';// ToastContainer is a component that wraps the entire app
+import HomeScreen from './screens/HomeScreen';// HomeScreen is a component
+import ProductScreen from './screens/ProductScreen';// ProductScreen is a component
+import Navbar from 'react-bootstrap/Navbar';// Navbar is a component
+import Badge from 'react-bootstrap/Badge';// Badge is a component
+import Nav from 'react-bootstrap/Nav';// Nav is a component
+import NavDropdown from 'react-bootstrap/NavDropdown';// NavDropdown is a component
+import Container from 'react-bootstrap/Container';// Container is a component
+import { LinkContainer } from 'react-router-bootstrap';// LinkContainer is a component
+import { useContext, useEffect, useState } from 'react';// useContext, useEffect, useState are hooks
+import { Store } from './Store';// Store is a component
+import CartScreen from './screens/CartScreen';// CartScreen is a component
+import SigninScreen from './screens/SigninScreen';// SigninScreen is a component
+import ShippingAddressScreen from './screens/ShippingAddressScreen';// ShippingAddressScreen is a component
+import SignupScreen from './screens/SignupScreen';// SignupScreen is a component
+import PaymentMethodScreen from './screens/PaymentMethodScreen';// PaymentMethodScreen is a component
+import PlaceOrderScreen from './screens/PlaceOrderScreen';// PlaceOrderScreen is a component
+import OrderScreen from './screens/OrderScreen';// OrderScreen is a component
+import OrderHistoryScreen from './screens/OrderHistoryScreen';// OrderHistoryScreen is a component
+import ProfileScreen from './screens/ProfileScreen';// ProfileScreen is a component
+import Button from 'react-bootstrap/Button';// Button is a component
+import { getError } from './utils';// getError is a function
+import axios from 'axios';// axios is a library
+import SearchBox from './components/SearchBox';// SearchBox is a component
+import SearchScreen from './screens/SearchScreen';// SearchScreen is a component
 
-function App() {
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+function App() {// App is a component
+  const { state, dispatch: ctxDispatch } = useContext(Store);// state is a variable, dispatch is a function
   const { cart, userInfo } = state;
 
-  const signoutHandler = () => {
+  const signoutHandler = () => {// signoutHandler is a function
     ctxDispatch({ type: 'USER_SIGNOUT' });
-    localStorage.removeItem('userInfo');
+    localStorage.removeItem('userInfo');// localStorage is a variable
     localStorage.removeItem('shippingAddress');
     localStorage.removeItem('paymentMethod');
-    window.location.href = '/signin';
+    window.location.href = '/signin';// window is a variable
   };
   const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const [categories, setCategories] = useState([]);
 
-  useEffect(() => {
-    const fetchCategories = async () => {
-      try {
+  useEffect(() => {// useEffect is a hook
+    const fetchCategories = async () => {// fetchCategories is a function
+      try {// try is a statement that allows you to define a block of code to be tested for errors while it is being executed
         const { data } = await axios.get(`/api/products/categories`);
         setCategories(data);
-      } catch (err) {
+      } catch (err) {// catch is a statement that allows you to define a block of code to be executed, if an error occurs in the try block
         toast.error(getError(err));
       }
     };
     fetchCategories();
   }, []);
   return (
-    <BrowserRouter>
+    <BrowserRouter> 
       <div
         className={
           sidebarIsOpen
@@ -61,8 +61,8 @@ function App() {
         }
       >
         <ToastContainer position="bottom-center" limit={1} />
-        <header>
-          <Navbar bg="dark" variant="dark" expand="lg">
+        <header> 
+          <Navbar bg="dark" variant="dark" expand="lg"> 
             <Container>
               <Button
                 variant="dark"
