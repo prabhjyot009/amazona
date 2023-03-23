@@ -9,8 +9,7 @@
 - Context API: Store, Reducers, Actions
 - Node & Express: Web API, Body Parser, File Upload, JWT
 - MongoDB: Mongoose, Aggregation
-- Development: ESLint, Babel, Git, Github,
-- Deployment: Heroku
+- Development: ESLint, Babel, Git, Github, VS Code Editor Extensions (ESLint, Prettier, Live Server, etc) and more ...
 
 ### 1. Clone repo
 
@@ -58,3 +57,25 @@ $ npm start
 
 - Run http://localhost:5000/signin
 - Enter admin email and password and click signin
+
+### 8. Create Products
+
+- Run http://localhost:5000/products
+- Click Create Product
+
+### 9. Create Orders
+
+- Run http://localhost:5000/orders
+- Click Create Order
+
+### 10. Paypal Sandbox
+
+- Run http://localhost:5000/paypal/clientId
+- Click Get Client ID
+
+- Run http://localhost:5000/paypal/config
+- Click Get Config
+
+- Run http://localhost:5000/paypal/create-payment
+
+- Run http://localhost:5000/paypal/execute-payment
