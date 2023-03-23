@@ -10,11 +10,11 @@ import ListGroup from 'react-bootstrap/ListGroup';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 import { Store } from '../Store';
-import CheckoutSteps from '../components/CheckoutSteps';
+import CheckoutSteps from '../components/CheckoutSteps';//importing react-bootstrap components
 import LoadingBox from '../components/LoadingBox';
 
-const reducer = (state, action) => {
-  switch (action.type) {
+const reducer = (state, action) => {//reducer is a function that takes in two arguments
+  switch (action.type) {//switch is a statement that takes in an object as an argument
     case 'CREATE_REQUEST':
       return { ...state, loading: true };
     case 'CREATE_SUCCESS':
@@ -26,17 +26,17 @@ const reducer = (state, action) => {
   }
 };
 
-export default function PlaceOrderScreen() {
+export default function PlaceOrderScreen() {//PlaceOrderScreen is a function that takes in no arguments
   const navigate = useNavigate();
 
   const [{ loading }, dispatch] = useReducer(reducer, {
     loading: false,
   });
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);//state is a variable that is equal to the useContext function
   const { cart, userInfo } = state;
 
-  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 123.2345 => 123.23
+  const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100; // 2 decimal places //round2 is a variable that is equal to the Math.round function that takes in a number as an argument and returns a number
   cart.itemsPrice = round2(
     cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
   );
@@ -44,11 +44,11 @@ export default function PlaceOrderScreen() {
   cart.taxPrice = round2(0.15 * cart.itemsPrice);
   cart.totalPrice = cart.itemsPrice + cart.shippingPrice + cart.taxPrice;
 
-  const placeOrderHandler = async () => {
+  const placeOrderHandler = async () => {//placeOrderHandler is a function that takes in no arguments
     try {
       dispatch({ type: 'CREATE_REQUEST' });
 
-      const { data } = await Axios.post(
+      const { data } = await Axios.post(//data is a variable that is equal to the Axios.post function that takes in two arguments
         '/api/orders',
         {
           orderItems: cart.cartItems,
@@ -61,7 +61,7 @@ export default function PlaceOrderScreen() {
         },
         {
           headers: {
-            authorization: `Bearer ${userInfo.token}`,
+            authorization: `Bearer ${userInfo.token}`,//authorization is a property that is equal to the userInfo.token property
           },
         }
       );
@@ -81,7 +81,7 @@ export default function PlaceOrderScreen() {
     }
   }, [cart, navigate]);
 
-  return (
+  return (//returning the following jsx code to the caller of this function which is equal to the PlaceOrderScreen object's __proto__ property which is equal to the function's prototype property which is equal to an object that has a constructor property which is equal to the PlaceOrderScreen function
     <div>
       <CheckoutSteps step1 step2 step3 step4></CheckoutSteps>
       <Helmet>

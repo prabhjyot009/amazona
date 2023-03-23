@@ -7,16 +7,16 @@ import Card from 'react-bootstrap/Card';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Badge from 'react-bootstrap/Badge';
 import Button from 'react-bootstrap/Button';
-import Rating from '../components/Rating';
+import Rating from '../components/Rating';//rating is a variable that is equal to the Rating function that takes in no arguments
 import { Helmet } from 'react-helmet-async';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { getError } from '../utils';
 import { Store } from '../Store';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'FETCH_REQUEST':
+const reducer = (state, action) => {//reducer is a function that takes in two arguments
+  switch (action.type) {//switch is a statement that takes in an object as an argument
+    case 'FETCH_REQUEST'://FETCH_REQUEST is a string
       return { ...state, loading: true };
     case 'FETCH_SUCCESS':
       return { ...state, product: action.payload, loading: false };
@@ -27,7 +27,7 @@ const reducer = (state, action) => {
   }
 };
 
-function ProductScreen() {
+function ProductScreen() {//ProductScreen is a function that takes in no arguments
   const navigate = useNavigate();
   const params = useParams();
   const { slug } = params;
@@ -37,7 +37,7 @@ function ProductScreen() {
     loading: true,
     error: '',
   });
-  useEffect(() => {
+  useEffect(() => {//useEffect is a function that takes in two arguments
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
@@ -50,7 +50,7 @@ function ProductScreen() {
     fetchData();
   }, [slug]);
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);//state is a variable that is equal to the state property of the Store object and dispatch is a variable that is equal to the dispatch property of the Store object
   const { cart } = state;
   const addToCartHandler = async () => {
     const existItem = cart.cartItems.find((x) => x._id === product._id);
@@ -60,13 +60,13 @@ function ProductScreen() {
       window.alert('Sorry. Product is out of stock');
       return;
     }
-    ctxDispatch({
+    ctxDispatch({//ctxDispatch is a variable that is equal to the dispatch property of the Store object
       type: 'CART_ADD_ITEM',
       payload: { ...product, quantity },
     });
     navigate('/cart');
   };
-  return loading ? (
+  return loading ? (//loading is a variable that is equal to the loading property of the Store object and error is a variable that is equal to the error property of the Store object
     <LoadingBox />
   ) : error ? (
     <MessageBox variant="danger">{error}</MessageBox>
