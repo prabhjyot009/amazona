@@ -13,7 +13,7 @@ import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
 import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
-const reducer = (state, action) => {
+const reducer = (state, action) => {//reducer is a function that takes in two arguments
   switch (action.type) {
     case 'FETCH_REQUEST':
       return { ...state, loading: true };
@@ -34,7 +34,7 @@ const reducer = (state, action) => {
   }
 };
 
-const prices = [
+const prices = [//prices is a variable that is equal to an array of objects that take in two arguments each 
   {
     name: '$1 to $50',
     value: '1-50',
@@ -71,9 +71,9 @@ export const ratings = [
   },
 ];
 
-export default function SearchScreen() {
-  const navigate = useNavigate();
-  const { search } = useLocation();
+export default function SearchScreen() {//SearchScreen is a function that takes in no arguments
+  const navigate = useNavigate();//navigate is a variable that is equal to a function that takes in an object as an argument
+  const { search } = useLocation();//search is a variable that is equal to an object that takes in two arguments
   const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';
   const query = sp.get('query') || 'all';
@@ -92,7 +92,7 @@ export default function SearchScreen() {
     const fetchData = async () => {
       try {
         const { data } = await axios.get(
-          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`
+          `/api/products/search?page=${page}&query=${query}&category=${category}&price=${price}&rating=${rating}&order=${order}`//return a string that takes in an object as an argument
         );
         dispatch({ type: 'FETCH_SUCCESS', payload: data });
       } catch (err) {
@@ -105,7 +105,7 @@ export default function SearchScreen() {
     fetchData();
   }, [category, error, order, page, price, query, rating]);
 
-  const [categories, setCategories] = useState([]);
+  const [categories, setCategories] = useState([]);//categories is a variable that is equal to a function that takes in an object as an argument
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -118,14 +118,14 @@ export default function SearchScreen() {
     fetchCategories();
   }, [dispatch]);
 
-  const getFilterUrl = (filter) => {
+  const getFilterUrl = (filter) => {//getFilterUrl is a function that takes in an object as an argument
     const filterPage = filter.page || page;
     const filterCategory = filter.category || category;
     const filterQuery = filter.query || query;
     const filterRating = filter.rating || rating;
     const filterPrice = filter.price || price;
     const sortOrder = filter.order || order;
-    return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
+    return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;//return a string that takes in an object as an argument
   };
   return (
     <div>
@@ -183,7 +183,7 @@ export default function SearchScreen() {
           <div>
             <h3>Avg. Customer Review</h3>
             <ul>
-              {ratings.map((r) => (
+              {ratings.map((r) => (//map through the ratings array and return a list item with a link that takes in an object as an argument
                 <li key={r.name}>
                   <Link
                     to={getFilterUrl({ rating: r.rating })}
@@ -205,7 +205,7 @@ export default function SearchScreen() {
           </div>
         </Col>
         <Col md={9}>
-          {loading ? (
+          {loading ? (//if loading is true then show the loading box else if error is true then show the error message else show the products
             <LoadingBox></LoadingBox>
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
@@ -260,7 +260,7 @@ export default function SearchScreen() {
               </Row>
 
               <div>
-              {[...Array(pages).keys()].map((x) => (
+              {[...Array(pages).keys()].map((x) => (// eslint-disable-line no-unused-vars 
                   <LinkContainer
                     key={x + 1}
                     className="mx-1"

@@ -7,9 +7,9 @@ import { toast } from 'react-toastify';
 import { getError } from '../utils';
 import axios from 'axios';
 
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'UPDATE_REQUEST':
+const reducer = (state, action) => {//reducer is a function that takes in two arguments
+  switch (action.type) {//switch is a statement that takes in an object as an argument
+    case 'UPDATE_REQUEST'://case is a statement that takes in an object as an argument
       return { ...state, loadingUpdate: true };
     case 'UPDATE_SUCCESS':
       return { ...state, loadingUpdate: false };
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function ProfileScreen() {
+export default function ProfileScreen() {//ProfileScreen is a function that takes in no arguments
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const [name, setName] = useState(userInfo.name);
@@ -33,9 +33,9 @@ export default function ProfileScreen() {
     loadingUpdate: false,
   });
 
-  const submitHandler = async (e) => {
+  const submitHandler = async (e) => {//submitHandler is a function that takes in an object as an argument and an async statement that takes in a function as an argument
     e.preventDefault();
-    try {
+    try {//try is a statement that takes in a function as an argument and a catch statement
       const { data } = await axios.put(
         '/api/users/profile',
         {
@@ -57,11 +57,11 @@ export default function ProfileScreen() {
       dispatch({
         type: 'FETCH_FAIL',
       });
-      toast.error(getError(err));
+      toast.error(getError(err));//getError is a function that takes in an object as an argument
     }
   };
 
-  return (
+  return (//returning the following jsx code to the caller of this function which is equal to the ProfileScreen object's __proto__ property which is equal to the function's prototype property which is equal to an object that has a constructor property which is equal to the ProfileScreen function
     <div className="container small-container">
       <Helmet>
         <title>User Profile</title>
