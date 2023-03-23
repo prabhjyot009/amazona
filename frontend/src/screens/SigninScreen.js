@@ -9,19 +9,19 @@ import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
-export default function SigninScreen() {
+export default function SigninScreen() {//export default is a function that takes in no arguments and a <Form.Group> component that takes in a className, a controlId and a <Form.Label> component that takes in a string as an argument
   const navigate = useNavigate();
   const { search } = useLocation();
   const redirectInUrl = new URLSearchParams(search).get('redirect');
   const redirect = redirectInUrl ? redirectInUrl : '/';
 
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState('');//email is a variable that is equal to the useState function
   const [password, setPassword] = useState('');
 
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const { userInfo } = state;
   const submitHandler = async (e) => {
-    e.preventDefault();
+    e.preventDefault();//e.preventDefault is a function that takes in no arguments
     try {
       const { data } = await Axios.post('/api/users/signin', {
         email,
@@ -41,7 +41,7 @@ export default function SigninScreen() {
     }
   }, [navigate, redirect, userInfo]);
 
-  return (
+  return (//return is a statement that takes in an object as an argument and a <Form.Group> component that takes in a className, a controlId and a <Form.Label> component that takes in a string as an argument
     <Container className="small-container">
       <Helmet>
         <title>Sign In</title>

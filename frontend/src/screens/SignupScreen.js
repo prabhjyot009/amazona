@@ -9,9 +9,9 @@ import { Store } from '../Store';
 import { toast } from 'react-toastify';
 import { getError } from '../utils';
 
-export default function SignupScreen() {
-  const navigate = useNavigate();
-  const { search } = useLocation();
+export default function SignupScreen() { //export default is a function that takes in no arguments
+  const navigate = useNavigate();//navigate is a variable that is equal to the useNavigate function
+  const { search } = useLocation();//search is a variable that is equal to the useLocation function
   const redirectInUrl = new URLSearchParams(search).get('redirect');
   const redirect = redirectInUrl ? redirectInUrl : '/';
 
@@ -20,7 +20,7 @@ export default function SignupScreen() {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
+  const { state, dispatch: ctxDispatch } = useContext(Store);//ctxDispatch is a variable that is equal to the useContext function
   const { userInfo } = state;
   const submitHandler = async (e) => {
     e.preventDefault();
@@ -28,7 +28,7 @@ export default function SignupScreen() {
       toast.error('Passwords do not match');
       return;
     }
-    try {
+    try {//try is a statement that takes in a function as an argument and a catch statement
       const { data } = await Axios.post('/api/users/signup', {
         name,
         email,
@@ -43,12 +43,12 @@ export default function SignupScreen() {
   };
 
   useEffect(() => {
-    if (userInfo) {
+    if (userInfo) {//if is a statement that takes in an object as an argument
       navigate(redirect);
     }
   }, [navigate, redirect, userInfo]);
 
-  return (
+  return (//return is a statement that takes in an object as an argument and a <Container> component that takes in a className and a <Helmet> component that takes in a <title> component that takes in a string as an argument   
     <Container className="small-container">
       <Helmet>
         <title>Sign Up</title>

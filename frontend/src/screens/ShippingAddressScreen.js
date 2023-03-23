@@ -6,18 +6,18 @@ import { useNavigate } from 'react-router-dom';
 import { Store } from '../Store';
 import CheckoutSteps from '../components/CheckoutSteps';
 
-export default function ShippingAddressScreen() {
-  const navigate = useNavigate();
+export default function ShippingAddressScreen() {//ShippingAddressScreen is a function that takes in no arguments
+  const navigate = useNavigate();//navigate is a variable that is equal to the useNavigate function
   const { state, dispatch: ctxDispatch } = useContext(Store);
   const {
-    userInfo,
+    userInfo,//userInfo is a variable that is equal to the userInfo property of the state object
     cart: { shippingAddress },
-  } = state;
+  } = state;//state is a variable that is equal to the state property of the Store object
   const [fullName, setFullName] = useState(shippingAddress.fullName || '');
   const [address, setAddress] = useState(shippingAddress.address || '');
   const [city, setCity] = useState(shippingAddress.city || '');
   const [postalCode, setPostalCode] = useState(
-    shippingAddress.postalCode || ''
+    shippingAddress.postalCode || ''//shippingAddress is a variable that is equal to the shippingAddress property of the cart object
   );
   useEffect(() => {
     if (!userInfo) {
@@ -49,7 +49,7 @@ export default function ShippingAddressScreen() {
     );
     navigate('/payment');
   };
-  return (
+  return (//return is a statement that takes in an object as an argument and a div statement that takes in an object as an argument and a Helmet statement that takes in an object as an argument and a CheckoutSteps statement that takes in an object as an argument and a div statement that takes in an object as an argument and a h1 statement that takes in an object as an argument and a Form statement that takes in an object as an argument and a Form.Group statement that takes in an object as an argument and a Form.Label statement that takes in an object as an argument and a Form.Control statement that takes in an object as an argument and a Form.Group statement that takes in an object as an argument and a Form.Label statement that takes in an object as an argument and a Form.Control statement that takes in an object as an argument and a Form.Group statement that takes in an object as an argument and a Form.Label statement that takes in an object as an argument and a Form.Control statement that takes in an object as an argument and a Form.Group statement that takes in an object as an argument and a Form.Label statement that takes in an object as an argument and a Form.Control statement that takes in an object as an argument and a Form.Group statement that takes in an object as an argument and a Form.Label statement that takes in an object as an argument and a Form.Control statement that takes in an object as an argument and a Form.Group statement that takes in an object as an argument and a Form.Label statement that takes in an object as an argument and a Form.Control statement that takes in an object as an argument and a Button statement that takes in an object as an argument
     <div>
       <Helmet>
         <title>Shipping Address</title>
