@@ -6,15 +6,15 @@ import axios from 'axios';
 import { useContext } from 'react';
 import { Store } from '../Store';
 
-function Product(props) {
-  const { product } = props;
+function Product(props) {//Product is a function that takes in an object as an argument
+  const { product } = props;//product is a variable that is equal to the product property of the props object
 
-  const { state, dispatch: ctxDispatch } = useContext(Store);
-  const {
+  const { state, dispatch: ctxDispatch } = useContext(Store);//state is a variable that is equal to the state property of the Store object and dispatch is a variable that is equal to the dispatch property of the Store object
+  const {//cartItems is a variable that is equal to the cartItems property of the
     cart: { cartItems },
   } = state;
 
-  const addToCartHandler = async (item) => {
+  const addToCartHandler = async (item) => {//addToCartHandler is a function that takes in an object as an argument
     const existItem = cartItems.find((x) => x._id === product._id);
     const quantity = existItem ? existItem.quantity + 1 : 1;
     const { data } = await axios.get(`/api/products/${item._id}`);
@@ -22,13 +22,13 @@ function Product(props) {
       window.alert('Sorry. Product is out of stock');
       return;
     }
-    ctxDispatch({
+    ctxDispatch({//ctxDispatch is a function that takes in an object as an argument
       type: 'CART_ADD_ITEM',
       payload: { ...item, quantity },
     });
   };
 
-  return (
+  return (//returning the following jsx code to the caller of this function which is equal to the Product object's __proto__ property which is equal to the function's prototype property which is equal to an object that has a constructor property which is equal to the Product function
     <Card>
       <Link to={`/product/${product.slug}`}>
         <img src={product.image} className="card-img-top" alt={product.name} />
