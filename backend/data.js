@@ -1,7 +1,7 @@
-import bcrypt from 'bcryptjs';
+import bcrypt from 'bcryptjs';//bcrypt is an object that is equal to the bcryptjs module's default export
 
-const data = {
-  users: [
+const data = {//data is an object that is equal to an object literal
+  users: [//users is an array that is equal to an array literal
     {
       name: 'Singh',
       email: 'admin@example.com',
@@ -15,9 +15,9 @@ const data = {
       isAdmin: false,
     },
   ],
-  products: [
+  products: [//products is an array that is equal to an array literal
     {
-      // _id: '1',
+      // _id: '1',//_id is a string that is equal to the id of the product
       name: 'Nike Slim shirt',
       slug: 'nike-slim-shirt',
       category: 'Shirts',

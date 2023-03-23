@@ -4,14 +4,14 @@ import expressAsyncHandler from 'express-async-handler';
 import User from '../models/userModel.js';
 import { isAuth, generateToken } from '../utils.js';
 
-const userRouter = express.Router();
+const userRouter = express.Router();//userRouter is an object that is equal to the express.Router() function
 
-userRouter.post(
+userRouter.post(//userRouter.post() is a method that is equal to the userRouter object's post property which is equal to the express.Router() function's post method
   '/signin',
-  expressAsyncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {//expressAsyncHandler is a middleware function that handles exceptions thrown in asynchronous functions
     const user = await User.findOne({ email: req.body.email });
     if (user) {
-      if (bcrypt.compareSync(req.body.password, user.password)) {
+      if (bcrypt.compareSync(req.body.password, user.password)) {//bcrypt.compareSync() is a method that is equal to the bcrypt object's compareSync property which is equal to the bcrypt object's compareSync method
         res.send({
           _id: user._id,
           name: user.name,
@@ -26,15 +26,15 @@ userRouter.post(
   })
 );
 
-userRouter.post(
+userRouter.post(//userRouter.post() is a method that is equal to the userRouter object's post property which is equal to the express.Router() function's post method
   '/signup',
-  expressAsyncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {//expressAsyncHandler is a middleware function that handles exceptions thrown in asynchronous functions
     const newUser = new User({
       name: req.body.name,
       email: req.body.email,
       password: bcrypt.hashSync(req.body.password),
     });
-    const user = await newUser.save();
+    const user = await newUser.save();//user is an object that is equal to the newUser object's save method
     res.send({
       _id: user._id,
       name: user.name,
@@ -45,7 +45,7 @@ userRouter.post(
   })
 );
 
-userRouter.put(
+userRouter.put(//userRouter.put() is a method that is equal to the userRouter object's put property which is equal to the express.Router() function's put method
   '/profile',
   isAuth,
   expressAsyncHandler(async (req, res) => {

@@ -8,11 +8,11 @@ import { Store } from '../Store';
 import { getError } from '../utils';
 import Button from 'react-bootstrap/esm/Button';
 
-const reducer = (state, action) => {
+const reducer = (state, action) => {// reducer is a function that takes an argument and returns a value based on the argument passed to it and the cases defined in the function body
   switch (action.type) {
-    case 'FETCH_REQUEST':
+    case 'FETCH_REQUEST':// FETCH_REQUEST is a case that returns a value when the action.type is FETCH_REQUEST and the state is loading
       return { ...state, loading: true };
-    case 'FETCH_SUCCESS':
+    case 'FETCH_SUCCESS':// FETCH_SUCCESS is a case
       return { ...state, orders: action.payload, loading: false };
     case 'FETCH_FAIL':
       return { ...state, loading: false, error: action.payload };
@@ -21,7 +21,7 @@ const reducer = (state, action) => {
   }
 };
 
-export default function OrderHistoryScreen() {
+export default function OrderHistoryScreen() {// OrderHistoryScreen is a function that returns a JSX element
   const { state } = useContext(Store);
   const { userInfo } = state;
   const navigate = useNavigate();
@@ -30,7 +30,7 @@ export default function OrderHistoryScreen() {
     loading: true,
     error: '',
   });
-  useEffect(() => {
+  useEffect(() => {// useEffect is a hook that takes a function as an argument and executes the function when the component is mounted
     const fetchData = async () => {
       dispatch({ type: 'FETCH_REQUEST' });
       try {
@@ -49,7 +49,7 @@ export default function OrderHistoryScreen() {
     };
     fetchData();
   }, [userInfo]);
-  return (
+  return (// return is a keyword that returns a value from a function and is used to render a JSX element to the DOM when the component is mounted and when the component is updated
     <div>
       <Helmet>
         <title>Order History</title>

@@ -12,7 +12,7 @@ productRouter.get('/', async (req, res) => {
 const PAGE_SIZE = 3;
 productRouter.get(
   '/search',
-  expressAsyncHandler(async (req, res) => {
+  expressAsyncHandler(async (req, res) => {//expressAsyncHandler is a middleware function that handles exceptions thrown in asynchronous functions
     const { query } = req;
     const pageSize = query.pageSize || PAGE_SIZE;
     const page = query.page || 1;
@@ -50,8 +50,8 @@ productRouter.get(
             },
           }
         : {};
-    const sortOrder =
-      order === 'featured'
+    const sortOrder =//sortOrder is an object that is equal to { featured: -1 } or { price: 1 } or { price: -1 } or { rating: -1 } or { createdAt: -1 } or { _id: -1 }
+      order === 'featured'//order is a string that is equal to 'featured' or 'lowest' or 'highest' or 'toprated' or 'newest'
         ? { featured: -1 }
         : order === 'lowest'
         ? { price: 1 }
@@ -73,7 +73,7 @@ productRouter.get(
       .skip(pageSize * (page - 1))
       .limit(pageSize);
 
-    const countProducts = await Product.countDocuments({
+    const countProducts = await Product.countDocuments({//countDocuments is a method that counts the number of documents in a collection that match the query filter
       ...queryFilter,
       ...categoryFilter,
       ...priceFilter,
@@ -88,7 +88,7 @@ productRouter.get(
   })
 );
 
-productRouter.get(
+productRouter.get(//get request is made to the /api/products/categories endpoint
   '/categories',
   expressAsyncHandler(async (req, res) => {
     const categories = await Product.find().distinct('category');
@@ -96,7 +96,7 @@ productRouter.get(
   })
 );
 
-productRouter.get('/slug/:slug', async (req, res) => {
+productRouter.get('/slug/:slug', async (req, res) => {//get request is made to the /api/products/slug/:slug endpoint
   const product = await Product.findOne({ slug: req.params.slug });
   if (product) {
     res.send(product);
@@ -104,7 +104,7 @@ productRouter.get('/slug/:slug', async (req, res) => {
     res.status(404).send({ message: 'Product Not Found' });
   }
 });
-productRouter.get('/:id', async (req, res) => {
+productRouter.get('/:id', async (req, res) => { //get request is made to the /api/products/:id endpoint
   const product = await Product.findById(req.params.id);
   if (product) {
     res.send(product);

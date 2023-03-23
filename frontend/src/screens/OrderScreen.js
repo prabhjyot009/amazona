@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useReducer } from 'react';
-import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
-import { Helmet } from 'react-helmet-async';
+import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';//paypal button component and paypal script reducer hook are imported from the paypal react-paypal-js package
+import { Helmet } from 'react-helmet-async';// 
 import { useNavigate, useParams } from 'react-router-dom';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -15,7 +15,7 @@ import { getError } from '../utils';
 import { toast } from 'react-toastify';
 
 function reducer(state, action) {
-  switch (action.type) {
+  switch (action.type) {// switch is a control flow statement that takes an argument and returns a value based on the argument passed to it and the cases defined in the function body
     case 'FETCH_REQUEST':
       return { ...state, loading: true, error: '' };
     case 'FETCH_SUCCESS':
@@ -43,7 +43,7 @@ export default function OrderScreen() {
   const { id: orderId } = params;
   const navigate = useNavigate();
 
-  const [{ loading, error, order, successPay, loadingPay }, dispatch] =
+  const [{ loading, error, order, successPay, loadingPay }, dispatch] =//loading, error, order, successPay, and loadingPay are destructured from the state object
     useReducer(reducer, {
       loading: true,
       order: {},
@@ -52,7 +52,7 @@ export default function OrderScreen() {
       loadingPay: false,
     });
 
-  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
+  const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();//isPending is destructured from the state object
 
   function createOrder(data, actions) {
     return actions.order
@@ -76,7 +76,7 @@ export default function OrderScreen() {
           `/api/orders/${order._id}/pay`,
           details,
           {
-            headers: { authorization: `Bearer ${userInfo.token}` },
+            headers: { authorization: `Bearer ${userInfo.token}` },//authorization header is set to the value of the token property of the userInfo object
           }
         );
         dispatch({ type: 'PAY_SUCCESS', payload: data });
@@ -95,7 +95,7 @@ export default function OrderScreen() {
     const fetchOrder = async () => {
       try {
         dispatch({ type: 'FETCH_REQUEST' });
-        const { data } = await axios.get(`/api/orders/${orderId}`, {
+        const { data } = await axios.get(`/api/orders/${orderId}`, {//axios get request is made to the /api/orders/${orderId} endpoint
           headers: { authorization: `Bearer ${userInfo.token}` },
         });
         dispatch({ type: 'FETCH_SUCCESS', payload: data });

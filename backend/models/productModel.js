@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const productSchema = new mongoose.Schema(
+const productSchema = new mongoose.Schema(//productSchema is a mongoose schema object that is equal to the mongoose.Schema() function which takes in an object as an argument
   {
     name: { type: String, required: true, unique: true },
     slug: { type: String, required: true, unique: true },
